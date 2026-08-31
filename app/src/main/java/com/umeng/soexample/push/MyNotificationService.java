@@ -3,16 +3,19 @@ package com.umeng.soexample.push;
 import java.util.Random;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
+
 import com.umeng.message.UTrack;
+import com.umeng.message.common.UPushNotificationChannel;
 import com.umeng.message.entity.UMessage;
 import com.umeng.soexample.R;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MyNotificationService extends Service {
@@ -33,11 +36,10 @@ public class MyNotificationService extends Service {
         try {
             UMessage msg = new UMessage(new JSONObject(message));
             if (oldMessage != null) {
-                UTrack.getInstance(getApplicationContext()).setClearPrevMessage(true);
-                UTrack.getInstance(getApplicationContext()).trackMsgDismissed(oldMessage);
+                UTrack.getInstance().trackMsgDismissed(oldMessage);
             }
             showNotification(msg);
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return super.onStartCommand(intent, flags, startId);
@@ -47,20 +49,30 @@ public class MyNotificationService extends Service {
         int id = new Random(System.nanoTime()).nextInt();
         oldMessage = msg;
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.cancelAll();
-        Notification.Builder mBuilder = new Notification.Builder(this);
-        mBuilder.setContentTitle(msg.title)
+        try {
+            manager.cancelAll();
+        } catch (Exception ignored) {
+        }
+        Notification.Builder builder;
+        if (Build.VERSION.SDK_INT >= 26) {
+            NotificationChannel channel = UPushNotificationChannel.getDefaultMode(this);
+            builder = new Notification.Builder(this, channel.getId());
+        } else {
+            builder = new Notification.Builder(this);
+        }
+        builder.setContentTitle(msg.title)
                 .setContentText(msg.text)
                 .setTicker(msg.ticker)
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.drawable.umeng_push_notification_default_small_icon)
                 .setAutoCancel(true);
-        Notification notification = mBuilder.getNotification();
+        Notification notification = builder.getNotification();
         PendingIntent clickPendingIntent = getClickPendingIntent(this, msg);
         PendingIntent dismissPendingIntent = getDismissPendingIntent(this, msg);
         notification.deleteIntent = dismissPendingIntent;
         notification.contentIntent = clickPendingIntent;
         manager.notify(id, notification);
+        UTrack.getInstance().trackMsgShow(msg, notification);
     }
 
     public PendingIntent getClickPendingIntent(Context context, UMessage msg) {

@@ -63,29 +63,25 @@ public class SharePlatformActivity extends BaseActivity {
         platforms.add(SHARE_MEDIA.WEIXIN.toSnsPlatform());
         platforms.add(SHARE_MEDIA.WEIXIN_CIRCLE.toSnsPlatform());
         platforms.add(SHARE_MEDIA.WEIXIN_FAVORITE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.WXWORK.toSnsPlatform());
         platforms.add(SHARE_MEDIA.SINA.toSnsPlatform());
         platforms.add(SHARE_MEDIA.QQ.toSnsPlatform());
         platforms.add(SHARE_MEDIA.QZONE.toSnsPlatform());
         platforms.add(SHARE_MEDIA.ALIPAY.toSnsPlatform());
         platforms.add(SHARE_MEDIA.DINGTALK.toSnsPlatform());
-        platforms.add(SHARE_MEDIA.RENREN.toSnsPlatform());
         platforms.add(SHARE_MEDIA.DOUBAN.toSnsPlatform());
         platforms.add(SHARE_MEDIA.SMS.toSnsPlatform());
         platforms.add(SHARE_MEDIA.EMAIL.toSnsPlatform());
         platforms.add(SHARE_MEDIA.YNOTE.toSnsPlatform());
         platforms.add(SHARE_MEDIA.EVERNOTE.toSnsPlatform());
-        platforms.add(SHARE_MEDIA.LAIWANG.toSnsPlatform());
-        platforms.add(SHARE_MEDIA.LAIWANG_DYNAMIC.toSnsPlatform());
         platforms.add(SHARE_MEDIA.LINKEDIN.toSnsPlatform());
         platforms.add(SHARE_MEDIA.YIXIN.toSnsPlatform());
         platforms.add(SHARE_MEDIA.YIXIN_CIRCLE.toSnsPlatform());
-        platforms.add(SHARE_MEDIA.TENCENT.toSnsPlatform());
         platforms.add(SHARE_MEDIA.FACEBOOK.toSnsPlatform());
         platforms.add(SHARE_MEDIA.FACEBOOK_MESSAGER.toSnsPlatform());
         platforms.add(SHARE_MEDIA.VKONTAKTE.toSnsPlatform());
         platforms.add(SHARE_MEDIA.TWITTER.toSnsPlatform());
         platforms.add(SHARE_MEDIA.WHATSAPP.toSnsPlatform());
-        platforms.add(SHARE_MEDIA.GOOGLEPLUS.toSnsPlatform());
         platforms.add(SHARE_MEDIA.LINE.toSnsPlatform());
         platforms.add(SHARE_MEDIA.INSTAGRAM.toSnsPlatform());
         platforms.add(SHARE_MEDIA.KAKAO.toSnsPlatform());
@@ -95,6 +91,9 @@ public class SharePlatformActivity extends BaseActivity {
         platforms.add(SHARE_MEDIA.FLICKR.toSnsPlatform());
         platforms.add(SHARE_MEDIA.FOURSQUARE.toSnsPlatform());
         platforms.add(SHARE_MEDIA.DROPBOX.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.BYTEDANCE.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.BYTEDANCE_PUBLISH.toSnsPlatform());
+        platforms.add(SHARE_MEDIA.BYTEDANCE_FRIENDS.toSnsPlatform());
         platforms.add(SHARE_MEDIA.MORE.toSnsPlatform());
 
     }

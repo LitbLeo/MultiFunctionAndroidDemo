@@ -1,51 +1,55 @@
 apply plugin: 'com.android.library'
 
+ArrayList<String> getShareDir(String name) {
+    ArrayList<File> tmp = new ArrayList<File>()
+    File[] files = (new File(rootDir, "share")).listFiles()
+    if (files != null) {
+        tmp.addAll(files)
+    }
+    ArrayList<String> dirs = new ArrayList<String>()
+    while (tmp.size() > 0) {
+        File file = tmp.remove(0)
+        if (file.isDirectory() && name == file.getName()) {
+            dirs.add(file.getPath())
+        } else if (file.isDirectory()) {
+            files = file.listFiles()
+            if (files != null) {
+                tmp.addAll(files)
+            }
+        }
+    }
+    return dirs
+}
+
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 34
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 30
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        sourceSets {
+            main {
+                ArrayList<String> resSrcList = getShareDir("res")
+                resSrcList.add("src/main/res")
+                res.srcDirs = resSrcList
+            }
+        }
     }
+
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets {
-        main {
-            manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['src']
-            resources.srcDirs = ['src']
-            aidl.srcDirs = ['src']
-            renderscript.srcDirs = ['src']
-            res.srcDirs = ['res']
-            assets.srcDirs = ['assets']
-            jniLibs.srcDirs = ['libs']
-        }
-
-        // Move the tests to tests/java, tests/res, etc...
-        instrumentTest.setRoot('tests')
-
-        // Move the build types to build-types/<type>
-        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
-        // This moves them out of them default location under src/<type>/... which would
-        // conflict with src/ being used by the main source set.
-        // Adding new build types or product flavors should be accompanied
-        // by a similar customization.
-        debug.setRoot('build-types/debug')
-        release.setRoot('build-types/release')
-    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    ArrayList<String> share = getShareDir("libs")
+    for (String item : share) {
+        api fileTree(dir: "${item}", include: ['*.jar', '*.aar'])
+    }
 }

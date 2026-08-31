@@ -27,9 +27,13 @@ public class StyleUtil {
     public static String  WEB11= "链接（有标题，有内容）";
     public static String  WEB10= "链接（有标题，无内容）";
     public static String  WEB01= "链接（无标题，有内容）";
+    public static String  WEB000 = "链路跟踪链接 (带root track code)";
     public static String  EMOJI= "微信表情";
     public static String  FILE= "文件";
+    public static String  LOCALVIDEO = "本地视频";
+    public static String  LOCALFILE = "本地文件";
     public static String  MINAPP= "小程序（测试）";
+    public static String  QQMiniApp = "QQ小程序";
     public static void initStyles(SHARE_MEDIA share_media, ArrayList<String> styles){
         styles.clear();
         if (share_media == SHARE_MEDIA.QQ){
@@ -38,6 +42,7 @@ public class StyleUtil {
             styles.add(StyleUtil.WEB11);
             styles.add(StyleUtil.MUSIC11);
             styles.add(StyleUtil.VIDEO11);
+            styles.add(StyleUtil.QQMiniApp);
         }else if (share_media == SHARE_MEDIA.QZONE){
             styles.add(StyleUtil.TEXT);
             styles.add(StyleUtil.IMAGELOCAL);
@@ -60,6 +65,7 @@ public class StyleUtil {
             styles.add(StyleUtil.IMAGELOCAL);
             styles.add(StyleUtil.IMAGEURL);
             styles.add(StyleUtil.WEB11);
+            styles.add(StyleUtil.WEB000);
             styles.add(StyleUtil.MUSIC11);
             styles.add(StyleUtil.VIDEO11);
             styles.add(StyleUtil.EMOJI);
@@ -80,23 +86,16 @@ public class StyleUtil {
             styles.add(StyleUtil.WEB11);
             styles.add(StyleUtil.MUSIC11);
             styles.add(StyleUtil.VIDEO11);
-
-        }  else if (share_media == SHARE_MEDIA.TENCENT){
+        }
+        else if (share_media == SHARE_MEDIA.WXWORK) {
+            // 企业微信
             styles.add(StyleUtil.TEXT);
             styles.add(StyleUtil.IMAGELOCAL);
             styles.add(StyleUtil.IMAGEURL);
             styles.add(StyleUtil.WEB11);
-            styles.add(StyleUtil.MUSIC11);
-            styles.add(StyleUtil.VIDEO11);
+            styles.add(StyleUtil.LOCALVIDEO);
+            styles.add(StyleUtil.LOCALFILE);
         } else if (share_media == SHARE_MEDIA.DOUBAN){
-            styles.add(StyleUtil.TEXT);
-            styles.add(StyleUtil.TEXTANDIMAGE);
-            styles.add(StyleUtil.IMAGELOCAL);
-            styles.add(StyleUtil.IMAGEURL);
-            styles.add(StyleUtil.WEB11);
-            styles.add(StyleUtil.MUSIC11);
-            styles.add(StyleUtil.VIDEO11);
-        }else if (share_media == SHARE_MEDIA.RENREN){
             styles.add(StyleUtil.TEXT);
             styles.add(StyleUtil.TEXTANDIMAGE);
             styles.add(StyleUtil.IMAGELOCAL);
@@ -115,7 +114,6 @@ public class StyleUtil {
             styles.add(StyleUtil.IMAGELOCAL);
             styles.add(StyleUtil.IMAGEURL);
             styles.add(StyleUtil.WEB11);
-            styles.add(StyleUtil.VIDEO11);
         }else if (share_media == SHARE_MEDIA.FACEBOOK_MESSAGER){
             styles.add(StyleUtil.IMAGELOCAL);
             styles.add(StyleUtil.IMAGEURL);
@@ -150,20 +148,6 @@ public class StyleUtil {
             styles.add(StyleUtil.WEB11);
             styles.add(StyleUtil.MUSIC11);
             styles.add(StyleUtil.VIDEO11);
-        }else if (share_media == SHARE_MEDIA.LAIWANG){
-
-            //            styles.add(StyleUtil.IMAGELOCAL);
-            //            styles.add(StyleUtil.IMAGEURL);
-            styles.add(StyleUtil.WEB11);
-            styles.add(StyleUtil.MUSIC11);
-            styles.add(StyleUtil.VIDEO11);
-        }else if (share_media == SHARE_MEDIA.LAIWANG_DYNAMIC){
-            //
-            //            styles.add(StyleUtil.IMAGELOCAL);
-            //            styles.add(StyleUtil.IMAGEURL);
-            styles.add(StyleUtil.WEB11);
-            styles.add(StyleUtil.MUSIC11);
-            styles.add(StyleUtil.VIDEO11);
         }else if (share_media == SHARE_MEDIA.INSTAGRAM){
             styles.add(StyleUtil.IMAGELOCAL);
             styles.add(StyleUtil.IMAGEURL);
@@ -186,11 +170,6 @@ public class StyleUtil {
             styles.add(StyleUtil.IMAGEURL);
             styles.add(StyleUtil.TEXTANDIMAGE);
         }else if (share_media == SHARE_MEDIA.KAKAO){
-            styles.add(StyleUtil.TEXT);
-            styles.add(StyleUtil.IMAGELOCAL);
-            styles.add(StyleUtil.IMAGEURL);
-            styles.add(StyleUtil.TEXTANDIMAGE);
-        }else if (share_media == SHARE_MEDIA.GOOGLEPLUS){
             styles.add(StyleUtil.TEXT);
             styles.add(StyleUtil.IMAGELOCAL);
             styles.add(StyleUtil.IMAGEURL);
@@ -243,7 +222,17 @@ public class StyleUtil {
         }else if (share_media == SHARE_MEDIA.DROPBOX) {
             styles.add(StyleUtil.IMAGELOCAL);
             styles.add(StyleUtil.IMAGEURL);
+        } else if (share_media == SHARE_MEDIA.BYTEDANCE) {
+            styles.add(StyleUtil.IMAGELOCAL);
+            styles.add(StyleUtil.MULIMAGE);
+            styles.add(StyleUtil.IMAGEURL);
+            styles.add(StyleUtil.LOCALVIDEO);
+        } else if (share_media == SHARE_MEDIA.BYTEDANCE_PUBLISH) {
+            styles.add(StyleUtil.LOCALVIDEO);
+        } else if (share_media == SHARE_MEDIA.BYTEDANCE_FRIENDS) {
+            styles.add(StyleUtil.IMAGELOCAL);
+            styles.add(StyleUtil.IMAGEURL);
+            styles.add(StyleUtil.WEB11);
         }
-
     }
 }
